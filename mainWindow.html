@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <title>List of notes</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/css/materialize.min.css">
+</head>
+
+<body>
+  <nav>
+    <div class="nav-wrapper">
+      <a href="#" class="brand-logo center">List of notes</a>
+    </div>
+  </nav>
+  <ul></ul>
+</body>
+
+<script>
+  const electron = require('electron');
+  const {ipcRenderer} = electron;
+  const ul = document.querySelector('ul');
+
+  // Add note
+  ipcRenderer.on('note:add', function(e, note) {
+    ul.className = 'collection';
+    const li = document.createElement('li');
+    li.className = 'collection-item';
+    const noteText = document.createTextNode(note);
+    li.appendChild(noteText);
+    ul.appendChild(li);
+  });
+  // Clear notes
+  ipcRenderer.on('note:clear', function() {
+    ul.innerHTML = '';
+    ul.className = '';
+    if (ul.children.length == 0) {
+      ul.className = '';
+    }
+  });
+
+</script>
+
+</html>
