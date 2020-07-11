@@ -12,7 +12,7 @@
   "author": "Roman Himadinov",
   "license": "MIT",
   "dependencies": {
-    "electron": "^1.7.6"
+    "electron": "^9.1.0"
   },
   "devDependencies": {
     "electron-packager": "^9.1.0"
